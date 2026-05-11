@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Environment variables (salasanat yms. eivät koskaan Githubiin)
+.env
+
+# Data files (raakadata ei kuulu repoon)
+data/
+
+# IDE
+.vscode/
+
+# Logs
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
