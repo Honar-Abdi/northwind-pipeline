@@ -1,24 +1,57 @@
-# Finland Weather Pipeline
+# Northwind Pipeline
 
-End-to-end data pipeline that ingests Finnish weather observation data
-from the Finnish Meteorological Institute (FMI) Open Data API,
-transforms it using dbt, and serves analytics-ready data for
-energy sector use cases such as consumption forecasting.
+Data pipeline that collects Finnish weather observations from the FMI Open Data API, loads them into PostgreSQL, and transforms the data for energy sector analytics.
 
 ## Architecture
 
-`FMI Open Data API → Python (Extract/Load) → PostgreSQL → dbt (Transform) → Power BI`
+```
+FMI Open Data API -> Python (extract/load) -> PostgreSQL -> dbt -> Power BI
+```
 
-## Tech Stack
+## Tech stack
 
-- **Python** — data extraction & loading
-- **PostgreSQL** — data warehouse
-- **dbt** — SQL transformations, testing & documentation
-- **Apache Airflow** — orchestration
-- **Azure** — cloud deployment (Blob Storage, Data Factory, Azure PostgreSQL)
-- **Power BI** — dashboards & visualization
-- **Docker** — containerized development environment
+- Python
+- PostgreSQL (Docker)
+- dbt
+- Apache Airflow
+- Azure (Blob Storage, Data Factory, Azure PostgreSQL)
+- Power BI
+- Docker
+
+## Project structure
+
+```
+northwind-pipeline/
+├── extract/            # FMI API client and configuration
+├── load/               # Database connection and data loading
+├── sql/                # Database schemas and migrations
+├── dbt/                # Transformations (wip)
+├── airflow/            # Orchestration DAGs (wip)
+├── tests/
+├── logs/
+├── docker-compose.yml
+├── run_pipeline.py
+├── requirements.txt
+└── .env.example
+```
+
+## Getting started
+
+```bash
+git clone https://github.com/Honar-Abdi/northwind-pipeline.git
+cd northwind-pipeline
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+cp .env.example .env    # add your credentials
+docker compose up -d
+python run_pipeline.py
+```
+
+## Data sources
+
+- [FMI Open Data](https://opendata.fmi.fi/) — hourly weather observations from stations across Finland
 
 ## Status
 
-🚧 Work in progress — currently building local development environment.
+Work in progress.
